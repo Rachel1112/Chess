@@ -1,0 +1,40 @@
+.chessboard{
+    background-color: lightsteelblue;
+    border-color: lightsteelblue;
+}
+
+.top {
+    position: absolute;
+    z-index: 1;
+    margin-top: -13px;
+ }
+
+.textlogout{
+    color:blue;
+    text-decoration:underline;
+}
+
+.guide{
+    margin-top:60px; 
+    border-spacing: 30px; 
+    font-size: 20px;
+}
+
+.logoutvalue{
+    float: right; 
+    margin-top: 5px; 
+    font-size: 10px;
+}
+
+.chessboardborder{
+    background-color: burlywood;
+    border: none;
+    font-size: 5px;
+    text-align: center;
+}
+
+.chessboardborder1{
+    background-color: burlywood;
+    border: none;
+    font-size: 5px;
+}

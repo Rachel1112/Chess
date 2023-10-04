@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Game Academy
+        </title>
+        <link rel="stylesheet" href="rxio902.css"/>
+        <script type="text/javascript" src="rxio902.js"></script>
+    </head>
+    <body>
+        <image src="https://cws.auckland.ac.nz/gas/api/FavIcon" height="110"/>
+        <span class="logoutvalue" id="logout">You are not logged in yet.👩</span>
+        <table align="right" class="guide">
+            <tr style="cursor: pointer;">
+                <td id="showhome" onclick="showHome();" style="background-color: lightgray;">🏠</td>
+                <td id="showlogin" onclick="showLogin();">👩</td>
+                <td id="showregister" onclick="showRegister();">&#9997;</td>
+                <td id="showshop" onclick="showShop();">🛒</td>
+                <td id="showcomment" onclick="showComment();">📖</td>
+                <td id="showchess" onclick="showChess();">♚</td>
+            </tr>
+        </table>
+        <div id="Home">
+            <h1>The Game Academy</h1>
+            <HR size=3 color="black">
+                <div style="text-align: center;">
+                    <p>
+                        This is Game Academy. You can buy some items to vent your shopping cravings. </br>You can also express your dissatisfaction about our game. </br>The most important of all is you can enjoy the game as much as you can. </br>Good luck! And have a nice day!
+                    </p>
+                    <img src="https://cws.auckland.ac.nz/gas/images/Kb.svg" height="150"></br>
+                    <HR size=1 color="black" width="300">
+                    <span id="version" style="font-size: 10px;">&reg;All rights reserved. </span>
+                </div>
+        </div>
+
+        <div id="Login" style="display: none;">
+            <h1>Login</h1>
+            <HR size=3 color="black"></br>
+                <div style="text-align: center;">
+                    <span>Username: </span>
+                    <input id='LoginUsername' type="text" style="width: 400px;" value='' /></br></br>
+                    <span>Password: </span>
+                    <input id='LoginPassword' type="text" style="width: 400px;" value='' /></br></br>
+                    <input type="button" value="Login" class="btn" onclick="UserLogin()" />
+                </br></br><span id="LoginResponse" style="font-size: 10px;"></span>
+                </div>
+        </div>
+        
+        <div id="Register" style="display: none;">
+            <h1>Register</h1>
+            <HR size=3 color="black">
+            </br>
+                <div style="text-align: center;">
+                    <span>Username: </span>
+                    <input id='RegistUsername' type="text" style="width: 400px;" value='' /></br></br>
+                    <span>Password: </span>
+                    <input id='RegistPassword' type="text" style="width: 400px;" value='' /></br></br>
+                    <span>Address: </span>
+                    <input id='RegistAddress' type="text" style="width: 400px;" value='' /></br></br>
+                    <input type="button" value="Register" class="btn" onclick="Registeruser()" />
+                </br><span id="RegisterResponse"></span>
+                </div>
+
+        </div>
+        
+        <div id="Shop" style="display: none;">
+            <h1>The Game Shop</h1>
+            <HR size=3 color="black">
+            </br>
+                <div style="text-align: center;">
+                    <span>Search Item: </span>
+                    <input type="text" id="searchitems" style="width: 300px;" />
+                    <input type="button" value="search" onclick="SearchItem()" /></br></br>
+                    <table id="ShopTable" border=1 align="center"></table>
+                </div>
+        </div>
+        
+        <div id="Comment" style="display: none;">
+            <h1>Guest Book</h1>
+            <HR size=3 color="black">
+            </br>
+            <p style="text-align: center; ">Please sign your guest book here.</p>
+            <div style="text-align: center; " >
+                <input id='GuestBook' type="text" style="width: 60%;height: 150px;" value='' /></br></br>
+                <span>Your name: </span><input id='GuestName' type="text" style="width: 40%;height: 20px;" value='' />
+                <input type="button" value="Submit" class="btn" onclick="WriteComments()" />
+            </div>
+            </br></br>
+            <div id="AllComments" style="text-align: center;">
+                <iframe src="https://cws.auckland.ac.nz/gas/api/Comments" frameborder="0" width="700px"></iframe>
+            </div>
+            <div style="text-align: center; "><input type="button" value="Refresh" class="btn" onclick="RefreshComments()" /></div>
+        </div>
+        
+        <div id="Chess" style="display: none;">
+            <h1>Game of Chess</h1>
+            <HR size=3 color="black"></br>
+            <div style="text-align: center;font-size: 10px;">
+                <span>Click "Try game" to start a game and wait for a while to pair your opponent. </br>Click "Get your opponent move" to get opponent move.</br>Click "Send your move" to send your move to opponent.</br>Click "Quit the game" to quit the game.</br>Good luck!😄</span>
+            </div>
+            </br>
+                <div id="gamechess">
+                <table border="1" width="300" height="300" cellspacing=0 align="center" ondrop="mydrop(event)" ondragover="mydragover(event)">
+                    <tr>
+                        <td class="chessboardborder1" style="border-style:dashed;" height="30" width="30"></td>
+                        <td class="chessboardborder" height="30" width="30">a</td>
+                        <td class="chessboardborder" height="30" width="30">b</td>
+                        <td class="chessboardborder" height="30" width="30">c</td>
+                        <td class="chessboardborder" height="30" width="30">d</td>
+                        <td class="chessboardborder" height="30" width="30">e</td>
+                        <td class="chessboardborder" height="30" width="30">f</td>
+                        <td class="chessboardborder" height="30" width="30">g</td>
+                        <td class="chessboardborder" height="30" width="30">h</td>
+                        <td id="bin1" class="chessboardborder" height="30" width="30"><img ondrop="removedrop(event)" ondragstart="return false;" src="https://cws.auckland.ac.nz/gas/images/Bin.svg" alt="Bin" width="25"></td>
+                    </tr>
+                    <tr>
+                        <td class="chessboardborder" height="30" width="30">8</td>
+                        <td id="a8" style="border-color:white" height="30" width="30"><img id="Rb1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Rb.svg" alt="Rb" width="25"></td>
+                        <td id="b8" height="30" width="30" class="chessboard"><img id="Nb1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Nb.svg" alt="Nb" width="25"></td>
+                        <td id="c8" style="border-color:white" height="30" width="30"><img id="Bb1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Bb.svg" alt="Bb" width="25"></td>
+                        <td id="d8" height="30" width="30" class="chessboard"><img id="Qb" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qb.svg" alt="Qb" width="25"></td>
+                        <td id="e8" style="border-color:white" height="30" width="30"><img id="Kb" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Kb.svg" alt="Kb" width="25"></td>
+                        <td id="f8" height="30" width="30" class="chessboard"><img id="Bb2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Bb.svg" alt="Bb" width="25"></td>
+                        <td id="g8" style="border-color:white" height="30" width="30"><img id="Nb2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Nb.svg" alt="Nb" width="25"></td>
+                        <td id="h8" height="30" width="30" class="chessboard"><img id="Rb2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Rb.svg" alt="Rb" width="25"></td>
+                        <td id="i8" class="chessboardborder" height="30" width="30"><img id="Qb1" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qb.svg" alt="Qb" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td class="chessboardborder" height="30" width="30">7</td>
+                        <td id="a7" height="30" width="30" class="chessboard"><img id="Pb1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="b7" style="border-color:white" height="30" width="30"><img id="Pb2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="c7" height="30" width="30" class="chessboard"><img id="Pb3" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="d7" style="border-color:white" height="30" width="30"><img id="Pb4" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="e7" height="30" width="30" class="chessboard"><img id="Pb5" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="f7" style="border-color:white" height="30" width="30"><img id="Pb6" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="g7" height="30" width="30" class="chessboard"><img id="Pb7" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="h7" style="border-color:white" height="30" width="30"><img id="Pb8" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pb.svg" alt="Pb" width="25"></td>
+                        <td id="i7" class="chessboardborder" height="30" width="30"><img id="Qb2" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qb.svg" alt="Qb" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td class="chessboardborder" height="30" width="30">6</td>
+                        <td id="a6" style="border-color:white" height="30" width="30"></td>
+                        <td id="b6" height="30" width="30" class="chessboard"></td>
+                        <td id="c6" style="border-color:white" height="30" width="30"></td>
+                        <td id="d6" height="30" width="30" class="chessboard"></td>
+                        <td id="e6" style="border-color:white" height="30" width="30"></td>
+                        <td id="f6" height="30" width="30" class="chessboard"></td>
+                        <td id="g6" style="border-color:white" height="30" width="30"></td>
+                        <td id="h6" height="30" width="30" class="chessboard"></td>
+                        <td id="i6" class="chessboardborder" height="30" width="30"><img id="Qb3" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qb.svg" alt="Qb" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td class="chessboardborder" height="30" width="30">5</td>
+                        <td id="a5" height="30" width="30" class="chessboard"></td>
+                        <td id="b5" style="border-color:white" height="30" width="30"></td>
+                        <td id="c5" height="30" width="30" class="chessboard"></td>
+                        <td id="d5" style="border-color:white" height="30" width="30"></td>
+                        <td id="e5" height="30" width="30" class="chessboard"></td>
+                        <td id="f5" style="border-color:white" height="30" width="30"></td>
+                        <td id="g5" height="30" width="30" class="chessboard"></td>
+                        <td id="h5" style="border-color:white" height="30" width="30"></td>
+                        <td id="i5" class="chessboardborder" height="30" width="30"><img id="Qb4" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qb.svg" alt="Qb" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td height="30" width="30" class="chessboardborder" height="30" width="30">4</td>
+                        <td id="a4" style="border-color:white" height="30" width="30"></td>
+                        <td id="b4" height="30" width="30" class="chessboard"></td>
+                        <td id="c4" style="border-color:white" height="30" width="30"></td>
+                        <td id="d4" height="30" width="30" class="chessboard"></td>
+                        <td id="e4" style="border-color:white" height="30" width="30"></td>
+                        <td id="f4" height="30" width="30" class="chessboard"></td>
+                        <td id="g4" style="border-color:white" height="30" width="30"></td>
+                        <td id="h4" height="30" width="30" class="chessboard"></td>
+                        <td id="i4" class="chessboardborder" height="30" width="30"><img id="Qw1" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qw.svg" alt="Qw" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td class="chessboardborder" height="30" width="30">3</td>
+                        <td id="a3" height="30" width="30" class="chessboard"></td>
+                        <td id="b3" style="border-color:white" height="30" width="30"></td>
+                        <td id="c3" height="30" width="30" class="chessboard"></td>
+                        <td id="d3" style="border-color:white" height="30" width="30"></td>
+                        <td id="e3" height="30" width="30" class="chessboard"></td>
+                        <td id="f3" style="border-color:white" height="30" width="30"></td>
+                        <td id="g3" height="30" width="30" class="chessboard"></td>
+                        <td id="h3" style="border-color:white" height="30" width="30"></td>
+                        <td id="i3" class="chessboardborder" height="30" width="30"><img id="Qw2" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qw.svg" alt="Qw" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td class="chessboardborder" height="30" width="30">2</td>
+                        <td id="a2" style="border-color:white" height="30" width="30"><img id="Pw1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="b2" height="30" width="30" class="chessboard"><img id="Pw2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="c2" style="border-color:white" height="30" width="30"><img id="Pw3" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="d2" height="30" width="30" class="chessboard"><img id="Pw4" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="e2" style="border-color:white" height="30" width="30"><img id="Pw5" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="f2" height="30" width="30" class="chessboard"><img id="Pw6" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="g2" style="border-color:white" height="30" width="30"><img id="Pw7" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="h2" height="30" width="30" class="chessboard"><img id="Pw8" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Pw.svg" alt="Pw" width="25"></td>
+                        <td id="i2" class="chessboardborder" height="30" width="30"><img id="Qw3" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qw.svg" alt="Qw" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td class="chessboardborder" height="30" width="30">1</td>
+                        <td id="a1" height="30" width="30" class="chessboard"><img id="Rw1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Rw.svg" alt="Rw" width="25"></td>
+                        <td id="b1" style="border-color:white" height="30" width="30"><img id="Nw1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Nw.svg" alt="Nw" width="25"></td>
+                        <td id="c1" height="30" width="30" class="chessboard"><img id="Bw1" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Bw.svg" alt="Bw" width="25"></td>
+                        <td id="d1" style="border-color:white" height="30" width="30"><img id="Qw" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qw.svg" alt="Qw" width="25"></td>
+                        <td id="e1" height="30" width="30" class="chessboard"><img id="Kw" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Kw.svg" alt="Kw" width="25"></td>
+                        <td id="f1" style="border-color:white" height="30" width="30"><img id="Bw2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Bw.svg" alt="Bw" width="25"></td>
+                        <td id="g1" height="30" width="30" class="chessboard"><img id="Nw2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Nw.svg" alt="Nw" width="25"></td>
+                        <td id="h1" style="border-color:white" height="30" width="30"><img id="Rw2" class="top" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Rw.svg" alt="Rw" width="25"></td>
+                        <td id="i1" class="chessboardborder" height="30" width="30"><img id="Qw4" ondragstart="mydragstart(event)" src="https://cws.auckland.ac.nz/gas/images/Qw.svg" alt="Qw" width="25" height="25"></td>
+                    </tr>
+                    <tr>
+                        <td id="bin2" class="chessboardborder" height="30" width="30"><img ondrop="removedrop(event)" ondragstart="return false;" src="https://cws.auckland.ac.nz/gas/images/Bin.svg" alt="Bin" width="25"></td>
+                        <td class="chessboardborder" height="30" width="30">a</td>
+                        <td class="chessboardborder" height="30" width="30">b</td>
+                        <td class="chessboardborder" height="30" width="30">c</td>
+                        <td class="chessboardborder" height="30" width="30">d</td>
+                        <td class="chessboardborder" height="30" width="30">e</td>
+                        <td class="chessboardborder" height="30" width="30">f</td>
+                        <td class="chessboardborder" height="30" width="30">g</td>
+                        <td class="chessboardborder" height="30" width="30">h</td>
+                        <td class="chessboardborder1" style="border-style:dashed;" height="30" width="30"></td>
+                    </tr>
+                </table>
+                </div></br>
+                <script type="text/javascript">const originalchess = document.getElementById("gamechess").innerHTML;</script>
+                <div id="Choosebutton" style="text-align: center; font-size: 10px;float: left;margin-left:42%;">
+                    <input type="button" value="Try Game" class="btn" onclick="Pairme()" />
+                </div>
+                <div id="Quit" style="text-align: center; font-size: 10px; display: none;float: left;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Quit Game" class="btn" onclick="QuitGame()" />
+                </div>
+            </br></br>
+                <div id="responsetext" style="text-align: center;font-size: 10px;"></div>
+        
+        </div>
+    </body>
+</html>
